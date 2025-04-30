@@ -1,0 +1,9 @@
+# 1. Установка русского языка:
+sudo apt update
+sudo apt install language-pack-ru
+# 2. Добавление русской раскладки и настройка переключения по Alt+Shift:
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'ru')]"
+gsettings set org.gnome.desktop.input-sources xkb-options "['grp:alt_shift_toggle']"
+# 3. Проверить, что настройки применились:
+gsettings get org.gnome.desktop.input-sources sources
+gsettings get org.gnome.desktop.input-sources xkb-options
